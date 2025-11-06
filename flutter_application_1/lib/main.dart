@@ -1,9 +1,14 @@
 // lib/main.dart
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'screens/home_screen.dart';
 import 'screens/notes_screen.dart';
 
-void main() {
+Future<void> main() async {
+  // 🧩 Charger les variables d'environnement avant de lancer l'app
+  await dotenv.load(fileName: ".env");
+
+  // 🚀 Lancer l'application
   runApp(const MyApp());
 }
 
@@ -20,8 +25,8 @@ class MyApp extends StatelessWidget {
       ),
       initialRoute: '/',
       routes: {
-        '/': (context) => HomeScreen(),   // **retirer const**
-        '/notes': (context) => NotesScreen(), // **retirer const**
+        '/': (context) => HomeScreen(),
+        '/notes': (context) => NotesScreen(),
       },
     );
   }
